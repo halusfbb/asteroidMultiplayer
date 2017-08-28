@@ -1,2 +1,6 @@
 gen/
 bin/
+libs/
+obj/
+proj.android/local.properties
+cocos2d/cocos/platform/android/java/local.properties
