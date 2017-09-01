@@ -6,7 +6,8 @@
  */
 
 #include "SocketAddress.h"
-#include <string.h>
+#include <arpa/inet.h>
+#include "StringUtil.h"
 
 SocketAddress::SocketAddress( uint32_t inAddress, uint16_t inPort )
 {
@@ -37,4 +38,19 @@ bool SocketAddress::operator==( const SocketAddress& inOther ) const
 uint32_t SocketAddress::GetSize() const
 {
 	return sizeof( sockaddr );
+}
+
+string SocketAddress::ToString() const
+{
+	const sockaddr_in* s = GetAsSockAddrIn();
+	char destinationBuffer[ 128 ];
+#ifdef _WIN32
+	InetNtop( s->sin_family, const_cast< in_addr* >( &s->sin_addr ), destinationBuffer, sizeof( destinationBuffer ) );
+#else
+	char* destinationBufferChar = inet_ntoa( s->sin_addr );
+	memcpy(destinationBuffer, destinationBufferChar, 128);
+#endif
+	return StringUtils::Sprintf( "%s:%d",
+								destinationBuffer,
+								ntohs( s->sin_port ) );
 }

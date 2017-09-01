@@ -16,7 +16,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/HelloWorldScene.cpp \
 				   ../../Classes/Network/SocketAddress.cpp \
 				   ../../Classes/Network/SocketAddressFactory.cpp \
-                   ../../Classes/Utils/SocketUtil.cpp
+				   ../../Classes/Network/UDPSocket.cpp \
+                   ../../Classes/Utils/SocketUtil.cpp \
+                   ../../Classes/Utils/StringUtil.cpp
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
                     $(LOCAL_PATH)/../../Classes/Utils
 

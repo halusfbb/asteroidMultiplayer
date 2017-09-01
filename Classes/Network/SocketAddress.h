@@ -11,6 +11,9 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <memory>
+#include <string>
+
+using namespace std;
 
 //this class wraps the basic socket data types (e.g. sockaddr, sockaddr_in, sin_addr)
 //and provides custom object oriented functions for type-safety.
@@ -25,8 +28,11 @@ public:
 
 	uint32_t GetSize() const;
 
+	string ToString() const;
+
 private:
-//	friend class UDPSocket;
+	//this is so that only socket-typed friend classes can manipulate SocketAddress private variables
+	friend class UDPSocket;
 //	friend class TCPSocket;
 
 	sockaddr mSockAddr;
@@ -44,5 +50,8 @@ private:
 };
 
 typedef std::shared_ptr< SocketAddress > SocketAddressPtr;
+#ifndef _WIN32 //on windows, the SOCKET is typedef to UINT_PTR
+	typedef int SOCKET;
+#endif
 
 #endif /* NETWORK_SOCKETADDRESS_H_ */

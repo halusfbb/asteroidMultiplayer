@@ -9,7 +9,6 @@
 #define NETWORK_SOCKETADDRESSFACTORY_H_
 
 #include "SocketAddress.h"
-#include <string.h>
 
 using namespace std;
 
