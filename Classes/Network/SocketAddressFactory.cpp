@@ -6,6 +6,7 @@
  */
 
 #include "SocketAddressFactory.h"
+#include "SocketUtil.h"
 #include <netdb.h>
 #include "cocos2d.h"
 
@@ -32,7 +33,7 @@ SocketAddressPtr SocketAddressFactory::CreateIPv4FromString( const string& inStr
 	int error = getaddrinfo( host.c_str(), service.c_str(), &hint, &result );
 	if( error != 0 && result != nullptr )
 	{
-		CCLOG( "SocketAddressFactory::CreateIPv4FromString" );
+		SocketUtil::ReportError( "SocketAddressFactory::CreateIPv4FromString" );
 		return nullptr;
 	}
 
