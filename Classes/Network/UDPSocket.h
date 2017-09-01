@@ -23,6 +23,7 @@ public:
 	int ReceiveFrom( void* inToReceive, int inMaxLength, SocketAddress& outFromAddress );
 
 private:
+	friend class SocketUtil;
 	UDPSocket( SOCKET inSocket ) : mSocket( inSocket ) {}
 	SOCKET mSocket;
 

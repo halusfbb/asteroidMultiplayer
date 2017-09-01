@@ -9,6 +9,7 @@
 #define UTILS_SOCKETUTIL_H_
 
 #include <sys/socket.h>
+#include "UDPSocket.h"
 
 enum SocketAddressFamily
 {
@@ -26,6 +27,7 @@ public:
 	static void			ReportError( const char* inOperationDesc );
 	static int			GetLastError();
 
+	static UDPSocketPtr	CreateUDPSocket( SocketAddressFamily inFamily );
 private:
 
 };

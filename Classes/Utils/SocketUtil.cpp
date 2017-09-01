@@ -6,7 +6,6 @@
  */
 
 #include "SocketUtil.h"
-
 #include "cocos2d.h"
 
 bool SocketUtil::StaticInit()
@@ -60,4 +59,23 @@ int SocketUtil::GetLastError()
 #else
 	return errno;
 #endif
+}
+
+UDPSocketPtr SocketUtil::CreateUDPSocket( SocketAddressFamily inFamily )
+{
+	SOCKET s = socket( inFamily, SOCK_DGRAM, IPPROTO_UDP );
+
+#ifdef _WIN32
+	if( s != INVALID_SOCKET )
+#else
+	if( s != -1)
+#endif
+	{
+		return UDPSocketPtr( new UDPSocket( s ) );
+	}
+	else
+	{
+		ReportError( "SocketUtil::CreateUDPSocket" );
+		return nullptr;
+	}
 }
