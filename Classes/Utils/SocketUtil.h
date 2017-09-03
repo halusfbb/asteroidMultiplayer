@@ -10,6 +10,7 @@
 
 #include <sys/socket.h>
 #include "UDPSocket.h"
+#include "TCPSocket.h"
 
 enum SocketAddressFamily
 {

@@ -33,7 +33,7 @@ public:
 private:
 	//this is so that only socket-typed friend classes can manipulate SocketAddress private variables
 	friend class UDPSocket;
-//	friend class TCPSocket;
+	friend class TCPSocket;
 
 	sockaddr mSockAddr;
 #if _WIN32
